@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block style %}
+
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>메인컨텐츠</h1>
+    {% if posts %}
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>작성자</th>
+                    <th>본문</th>
+                    <th>게시일</th>
+                    <th>상세</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td>{{ post.id }}</td>
+                    <td>{{ post.author }}</td>
+                    <td>{{ post.body }}</td>
+                    <td>{{ post.created_at }}</td>
+                    <td><a href="{% url 'posts:detail' post.id %}">보기</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        <a href="{% url 'posts:new' %}">새 글</a>
+</div>
+{% endblock %}
