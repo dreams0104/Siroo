@@ -21,6 +21,7 @@ def detail(request, post_id):
     tags = list(post.taginpost.all())
     tag_ids =[*map(lambda tag:tag.id, list(post.taginpost.all()))]
     print(tag_ids)
+    print(1)
 
     #날짜 계산 기능
     past = post.created_at
