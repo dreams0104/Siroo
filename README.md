@@ -1,6 +1,6 @@
 # Siroo
 
-** Master Branch ** 와 각자의 ** Personal Branch ** 가 존재하게 할 예정입니다.
+**Master Branch** 와 각자의 **Personal Branch** 가 존재하게 할 예정입니다.
 
 다음의 원칙을 지킨 코드만 Master Branch에 merge하실 수 있습니다.
 
