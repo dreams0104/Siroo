@@ -19,9 +19,15 @@ def detail(request, post_id):
     post = Post.objects.get(id=post_id)
     #detail templates에서 사용하기 위해 context에 제공해야하기에 쿼리셋을 리스트형태로 받아옴.
     tags = list(post.taginpost.all())
+    print(tags)
     tag_ids =[*map(lambda tag:tag.id, list(post.taginpost.all()))]
+    #연관 tag의 id를 int형태로 받아옴.
     print(tag_ids)
-    print(1)
+    tag_id = tag_ids.pop()
+    print(tag_id)
+    tag = Tag.objects.get(id=tag_id)
+    posts = tag.taged_post.all()
+    print(posts)
 
     #날짜 계산 기능
     past = post.created_at

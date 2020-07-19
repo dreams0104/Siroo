@@ -15,6 +15,7 @@
                     <th>작성자</th>
                     <th>본문</th>
                     <th>게시일</th>
+                    <th>댓글수</th>
                     <th>상세</th>
                 </tr>
             </thead>
@@ -25,6 +26,8 @@
                     <td>{{ post.author }}</td>
                     <td>{{ post.body }}</td>
                     <td>{{ post.created_at }}</td>
+                    <!-- 댓글 수 확인 -->
+                    <td>{{ post.comment_set.all.count }}</td>
                     <td><a href="{% url 'posts:detail' post.id %}">보기</a></td>
                 </tr>
             {% endfor %}
