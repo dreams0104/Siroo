@@ -2,10 +2,19 @@
 
 {% load static %}
 {% block style %}
-
+<link rel="stylesheet" href="{% static 'posts/style.css' %}">
 {% endblock %}
 {% block content %}
-<div class="container">
+<div id="contents">
+    <div class="main_banner">
+    배너 이미지 삽입 예정
+    </div>
+    <div class="main_topic">
+        <div class="select_vil"> <a href="">OO동</a> 인기 토픽
+        </div>
+        <div class="select_vil_more"><a href="">더보기</a>
+        </div>
+    </div>
     <h1>메인컨텐츠</h1>
     {% if posts %}
         <table>

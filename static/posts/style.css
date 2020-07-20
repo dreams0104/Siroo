@@ -1,0 +1,43 @@
+.container #contents .main_banner {
+    height: 250px;
+    background-color: aqua;
+    margin-top: 17px;
+    margin-bottom: 30px;
+    font-size: 80px;
+    text-align: center;
+}
+.container #contents .main_topic {
+    margin-bottom: 71px;
+}
+
+.container #contents .main_topic .select_vil {
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 22.5px;
+    display: inline; margin: 0 2px;
+    float: left;
+}
+
+.container #contents .main_topic .select_vil a{
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration-line: underline;
+    margin-bottom: 22.5px;
+    display: inline; margin: 0 2px;
+    float: left;
+}
+
+.container #contents .main_topic .select_vil_more a{
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #959191;
+    display: inline; margin: 0 2px;
+    float: right;
+    text-align: right;
+}

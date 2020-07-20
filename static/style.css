@@ -1,17 +1,106 @@
-#header {
-    width: 100%
-    position: absolute;
-    height: 70px;
+/* 레이아웃 */
+header {
+    height: 60px;
     left: 0px;
-    border-bottom : 1px solid #E0E0E0;
-    padding-top: 28px;
+    border-bottom: 1px solid #E0E0E0;
 }
 
 main .container {
-    margin-top: 30px;
+    /* 컨테이너 라인으로 폭 확인 시 주석 제거 */
+    /*border-right: 1px solid #E0E0E0;*/ 
+    /*border-left: 1px solid #E0E0E0;*/
+}
+footer {
+    padding: 10px 0; 
+    height: 60px;
+    position: relative;
+    /* 푸터라인 확인 시 주석 제거 */
+    /* border-top: 1px solid #E0E0E0;*/
+} 
+
+/* 컨테이너 */
+
+.container {
+    position: relative; 
+    width: 954px; 
+    margin: 0 auto; 
+    
+    /* background: rgba(0,0,0,0.3); */
 }
 
-footer {
-    clear: both;
-    height: 100px;
+/* 헤더 */
+
+.header {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+ .header .header-logo {
+    text-align: left; 
+    padding-top: 18px;
+    padding-bottom: 13px;
+}
+
+.header .header-logo a {
+    display: inline; margin: 0 2px;
+    float: left;
+}
+
+.header .header-menu {
+    display: inline; margin: 0 2px;
+    float: right;
+    line-height: 18px
+}
+
+.header .header-menu li {
+    position: relative; 
+    padding-top: 6.5px;
+    height: 29px;
+    display: inline; margin: 0 20px 0 0;
+    float: left;
+    text-align: center;
+}
+
+.header .header-menu .navbutton {
+    display: inline; margin: 0 2px;
+    padding-top: 0;
+    float: left;
+}
+
+.header .header-menu .navbutton button {
+    display: inline; margin: 0 2px;
+    height: 29px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+/* 메인 */
+main .container {
+
+}
+
+/* 푸터 */
+.footer {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+}
+.footer .a {
+    position: relative;
+    float : right;
+}
+.footer .a li {
+    position: relative;
+    line-height : 58px;
+    height: 60px;
+    display: inline; margin: 0 0 0 35px;
+    text-align: center;
+    color: black;    
 }
