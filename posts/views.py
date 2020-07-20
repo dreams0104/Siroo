@@ -3,12 +3,43 @@ from django.http import HttpResponse
 from .models import Post, Comment, Tag
 from django.utils import timezone
 from datetime import datetime
+#hot_tag를 위해 db.models에서 Count import해옴.
+from django.db.models import Count
 # Create your views here.
 
 def index(request):
     posts = Post.objects.all().order_by('-created_at')
+    #불러오는 Posts의 숫자를 제한하기
+    posts = list(posts)[0:4]
+    #전체 태그에서 가장 많이 쓰인 태그 불러오기    
+    tags = Tag.objects.all().annotate(num_posts=Count('taged_post')).order_by('-num_posts')        
+    hot_tags = list(tags)[0:9]
+    print(tags)
+
+    #created_at 간소화 시키기
+    for post in posts:
+        past = post.created_at
+        now = timezone.now()
+        sec = now - past
+        countd = int((sec).total_seconds()/3600)
+        countday = int((sec).total_seconds()/3600/24)
+        daycount = ""
+        #past와 now를 문자열로나눈 뒤, 날짜가 보이는 부분을 인덱싱함
+        #시간이 경과 되었어도 날짜가 바뀐지를 확인하기 위함.
+        a = str(past)[0:10]
+        b = str(now)[0:10]
+
+        if a == b:
+            daycount = "오늘 "
+        elif countd < 24 :
+            daycount = "하루 전"
+        else :
+            daycount = str(countday) + "일 전"  
+
     context = {
-        'posts' : posts
+        'posts' : posts,
+        'daycount' : daycount,
+        'hot_tags' : hot_tags
     }
     
     return render(request, 'posts/index.html', context)
@@ -113,7 +144,9 @@ def tagforpost(request, post_id):
             tag=Tag(tag=tag_text)
             post.save()
             "태그"
-
+            
+            #태그가 기존에 있는 태그면, 쿼리셋에 추가만 해주고,
+            #태그가 기존에 없는 태그라면 태그를 저장한 뒤에 쿼리셋에 추가함.
             try:
                 tag = Tag.objects.get(tag=tag_text)
                 

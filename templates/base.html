@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="{% static 'reset.css' %}">
         <link rel="stylesheet" href="{% static 'style.css' %}">
         <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">-->
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
         <title>Siroo</title>
         {% block style %}
         {% endblock %}
@@ -22,7 +22,7 @@
                             <a href="{% url 'posts:index' %}"><img src="https://drive.google.com/uc?export=download&id=1q7ot45nSNOq9pdpaj3Izl8GOf-27szEy"></a>
                             <div class="header-menu">
                                 <ul>
-                                <li><a href="">우리 동네 이야기</a></li>
+                                <li><a href="{% url 'posts:index' %}">우리 동네 이야기</a></li>
                                 <li><a href="">우리 동네 마켓</a></li>
                                 <li><a href="">마이페이지</a></li>
                                 <li> ｜ </li>                                

@@ -1,38 +1,125 @@
+/* 레이아웃 */
+.main_banner {
+
+}
+
+.index_topic {
+
+}
+
+.index_feeds {
+
+}
+
+/* 메인 배너 */
 .container #contents .main_banner {
     height: 250px;
-    background-color: aqua;
     margin-top: 17px;
     margin-bottom: 30px;
+    margin-left: 2px;
+    margin-right: 2px;
     font-size: 80px;
     text-align: center;
 }
-.container #contents .main_topic {
+
+/* 인기 토픽 */
+.container #contents .index_topic {
     margin-bottom: 71px;
 }
 
-.container #contents .main_topic .select_vil {
-    font-family: Noto Sans;
+.container #contents .index_topic .select_vil {
+    font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     margin-bottom: 22.5px;
-    display: inline; margin: 0 2px;
+    display: inline-block; margin: 0 2px;
     float: left;
 }
 
-.container #contents .main_topic .select_vil a{
-    font-family: Noto Sans;
+.container #contents .index_topic .select_vil a{
+    font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     text-decoration-line: underline;
     margin-bottom: 22.5px;
+    display: inline-block; margin: 0 2px;
+    float: left;
+}
+
+.container #contents .index_topic .select_vil_more a{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #959191;
+    display: inline-block; margin: 0 2px;
+    float: right;
+    text-align: right;
+}
+
+.container #contents .hot_tags_section {
+    padding-top: 50px;
+    margin-bottom: 64px;
+    margin-left: 2px;
+    margin-right: 2px;
+    width: 100%;    
+    display: block;
+}
+
+.container #contents .index_topic .hot_tags_section .hot_tags {
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    position: static;
+    color: #FFFFFF;
+    align-items: center;
+    height: 30px;
+    padding: 6px 8px 6px 8px;
+    background: #83A4C3;
+    border-radius: 15px;
+    display: inline-block; margin: 1px 1px;
+    box-sizing: border-box;    
+}
+
+.container #contents .index_topic .hot_tags_section .hot_tags span {
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: #fff
+}
+
+/* 주변 이야기 */
+
+.container #contents .index_feeds {
+    margin-bottom: 71px;
+}
+
+.container #contents .index_feeds .select_vil {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+     display: inline; 
+    margin: 0 2px;
+    float: left;
+}
+
+.container #contents .index_feeds .select_vil a{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration-line: underline;
     display: inline; margin: 0 2px;
     float: left;
 }
 
-.container #contents .main_topic .select_vil_more a{
-    font-family: Noto Sans;
+.container #contents .index_feeds .select_vil_more a{
+    font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -40,4 +127,93 @@
     display: inline; margin: 0 2px;
     float: right;
     text-align: right;
+}
+
+/* 주변 이야기 카드 섹션 */
+
+.container #contents .index_feed {
+    margin-top: 25px;
+    display: block;
+}
+
+.container #contents .index_feed .feed_card {
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    box-sizing : border-box;
+    height: 200px;
+    width: 24.5%;
+    display: inline-block; margin: 5px 2px;
+    float: left;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px; 
+    padding: 13px 17px 5px 17px;
+}
+
+.container #contents .index_feed .feed_card .feed_card_body {    
+    height:69px;
+    margin-bottom: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    color: #000000;
+}
+
+.container #contents .index_feed .feed_card .feed_card_body a{    
+    height:69px;
+    margin-bottom: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    color: #000000;
+}
+
+.container #contents .index_feed .feed_card .feed_card_tag {
+    margin-bottom: 3px;
+    width: 100%;
+    height: 52px;
+}
+
+.container #contents .index_feed .feed_card .feed_card_tag .tag {
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    position: static;
+    color: #FFFFFF;
+    align-items: center;
+    height: 24px;
+    padding: 4px 8px 4px 8px;
+    background: #0D6424;
+    border-radius: 15px;
+    display: inline-block; margin: 1px 1px;
+    box-sizing: border-box;
+}
+
+.container #contents .index_feed .feed_card .feed_card_created_at {
+    display: inline-block;
+    box-sizing: border-box;
+    height: 52px;
+    float: right;
+    padding: 40px 1px 0 0;
+    width: 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    text-align: right;
+    color: #B3B3B3;
+}
+
+.container #contents .index_feed .feed_card .feed_card_author {
+    display:inline-block;
+    margin: 0 0 0 1px;
+}
+.container #contents .index_feed .feed_card .feed_card_liked {
+    text-align: right;
+    margin: 0 1px 0 0;
+    float:right;
 }
