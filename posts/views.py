@@ -5,9 +5,10 @@ from django.utils import timezone
 from datetime import datetime
 #hot_tag를 위해 db.models에서 Count import해옴.
 from django.db.models import Count
-# Create your views here.
+
 
 def index(request):
+
     posts = Post.objects.all().order_by('-created_at')
     #불러오는 Posts의 숫자를 제한하기
     posts = list(posts)[0:4]
@@ -54,11 +55,13 @@ def detail(request, post_id):
     tag_ids =[*map(lambda tag:tag.id, list(post.taginpost.all()))]
     #연관 tag의 id를 int형태로 받아옴.
     print(tag_ids)
-    tag_id = tag_ids.pop()
-    print(tag_id)
-    tag = Tag.objects.get(id=tag_id)
-    posts = tag.taged_post.all()
-    print(posts)
+    if len(tag_ids) > 0:
+        tag_id = tag_ids.pop()
+        tag = Tag.objects.get(id=tag_id)
+        posts = tag.taged_post.all()
+    else:
+        pass
+
 
     #날짜 계산 기능
     past = post.created_at
@@ -193,5 +196,86 @@ def comment_create(request, post_id):
     comment = Comment(post=post, author=author, body=body)
     comment.save()
 
+
+
     return redirect('posts:detail', post_id=post.id)
 
+def comment_edit(request, comment_id):
+
+    comment = Comment.objects.get(id=comment_id)
+    post = comment.post
+    
+    context = {
+        'comment' : comment,
+        'post' : post
+    }
+    return render(request, 'posts/comment_edit.html', context)
+
+
+def comment_update(request, comment_id):
+
+    comment = Comment.objects.get(id=comment_id)
+    post = comment.post
+    comment.author = request.POST['author']
+    comment.body = request.POST['body']
+    comment.save()
+
+    #바로 detail페이지로 가지 않고, tag저장 후 가기 위해서 tagforpost로 이동
+    return redirect('posts:detail', post_id=post.id)    
+
+def comment_delete(request, comment_id):
+    
+    #post 삭제 시, 연관 tag를 불러오고, 전부 지워버린 후 post를 지움
+    comment = Comment.objects.get(id=comment_id)
+    post = comment.post
+    #tag = post.taginpost.all()
+    #tag.delete()
+    comment.delete()
+
+    return redirect('posts:detail', post_id=post.id)
+
+
+def tag_filter(request, tag_id):
+
+    tag = Tag.objects.get(id=tag_id)
+
+    return redirect('posts:taged_post_filter', tag_id=tag.id)
+
+def taged_post_filter(request, tag_id):
+
+    tag = Tag.objects.get(id=tag_id)
+    posts = tag.taged_post.all().order_by('-created_at')    
+    #불러오는 Posts의 숫자를 제한하기
+    posts = list(posts)[0:4]
+    #전체 태그에서 가장 많이 쓰인 태그 불러오기    
+    tags = Tag.objects.all().annotate(num_posts=Count('taged_post')).order_by('-num_posts')        
+    hot_tags = list(tags)[0:9]
+    print(tags)
+
+    #created_at 간소화 시키기
+    for post in posts:
+        past = post.created_at
+        now = timezone.now()
+        sec = now - past
+        countd = int((sec).total_seconds()/3600)
+        countday = int((sec).total_seconds()/3600/24)
+        daycount = ""
+        #past와 now를 문자열로나눈 뒤, 날짜가 보이는 부분을 인덱싱함
+        #시간이 경과 되었어도 날짜가 바뀐지를 확인하기 위함.
+        a = str(past)[0:10]
+        b = str(now)[0:10]
+
+        if a == b:
+            daycount = "오늘 "
+        elif countd < 24 :
+            daycount = "하루 전"
+        else :
+            daycount = str(countday) + "일 전"  
+
+    context = {
+        'posts' : posts,
+        'daycount' : daycount,
+        'hot_tags' : hot_tags,
+    }
+    
+    return render(request, 'posts/taged_post_filter.html', context)
