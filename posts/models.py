@@ -10,7 +10,6 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     #ManytoManyField로 태그 저장.
     taginpost = models.ManyToManyField("Tag", related_name='taged_post')
-    
 
     def __str__(self):
         return f'author{self.author} : body{self.body} / tag {self.taginpost.all()}'
