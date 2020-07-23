@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'posts/style.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="index_feed">
+{% if posts %}
+    {% for post in posts %}
+        <div class="feed_card">
+            <div class="feed_card_body">
+                <a href="{% url 'posts:detail' post.id %}">{{ post.body }}</a>
+            </div>
+            <div class="feed_card_tag">
+                {% if post.taginpost.all %}                            
+                    {% for tag in post.taginpost.all %}
+                        <div class="tag">   
+                            #{{ tag }} 
+                        </div>
+                    {% endfor %}                            
+                {% endif %}                
+                <div class="feed_card_created_at">
+                    {{ daycount }}
+                </div>
+            </div>
+            <br>
+            <div class="feed_card_author">
+            {{ post.author }}
+            </div> 
+            <div class="feed_card_liked">
+            댓글 : {{ post.comment_set.all.count }}
+            </div>
+        </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+
+
+
+{% endblock %}
+

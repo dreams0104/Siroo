@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="{% static 'posts/style.css' %}">
 {% endblock %}
 {% block content %}
+
+
+
 <div class="container">
     <div class="index_banners">
         <div class="write_comment">
@@ -55,12 +58,20 @@
                 </div>
                 <div class="feed_card_tag">
                     <div class="tags">
-                    {% if post.taginpost.all %}                            
-                        {% for tag in post.taginpost.all %}
-                            <div class="tag">   
-                                #{{ tag }} 
-                            </div>
-                        {% endfor %}                            
+                        {% if post.taginpost.all %}                            
+                            {% for tag in post.taginpost.all %}
+                                {% if TAGS %}
+                                    {% for TAG in TAGS %}
+                                        {% if TAG == tag %}
+                                            <div class="TAG">
+                                                <a href="{% url 'posts:TAG_filter'  TAG.id %}">   
+                                                    #{{ TAG }} 
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}                            
                         {% endif %}
                     </div>
                     <div class="feed_card_created_at">

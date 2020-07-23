@@ -18,4 +18,5 @@ urlpatterns = [
     path('<int:comment_id>/comment_delete/', views.comment_delete, name='comment_delete'),
     path('<int:tag_id>/taged_post_filter/', views.taged_post_filter, name='taged_post_filter'),
     path('<int:tag_id>/tag_filter/', views.tag_filter, name='tag_filter'),
+    path('<int:TAG_id>TAG_filter/', views.TAG_filter, name='TAG_filter'),
 ]
