@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'posts/style.css' %}">
+{% endblock %}
+{% block content %}
+<div id="contents">
+    <div class="main_banner">
+        <img src="https://drive.google.com/uc?export=download&id=1AoyB_4KgtKbQxOl4j51GeiUnieGHKHda">
+    </div>
+    <div class="index_topic">
+        <div class="select_vil_section">
+            <div class="select_vil"> 
+                <a href="">청라1동</a> 인기 토픽
+            </div>
+            <div class="select_vil_more">
+                <a href="">더보기</a>
+            </div>
+        </div>
+        <div class="hot_tags_section">
+            {% if hot_tags %}
+                {% for hot_tag in hot_tags%}
+                <a href="{% url 'posts:tag_filter' hot_tag.id %}">
+                <div class="hot_tags">                    
+                    #{{ hot_tag }} <span>{{ hot_tag.taged_post.all.count }}개<span>
+                </div>
+                </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="index_feeds">
+        <div class="select_vil">
+            <a href="">청라1동</a> OO님 주변 이야기
+        </div>
+        <div class="select_vil_more">
+            <a href="">더보기</a>
+        </div>
+    </div>
+    <br>
+    <div class="index_feed">
+    {% if posts %}
+        {% for post in posts %}
+            <div class="feed_card">
+                <div class="feed_card_body">
+                    <a href="{% url 'posts:detail' post.id %}">{{ post.body }}</a>
+                </div>
+                <div class="feed_card_tag">
+                    {% if post.taginpost.all %}                            
+                        {% for tag in post.taginpost.all %}
+                            <div class="tag">   
+                                #{{ tag }} 
+                            </div>
+                        {% endfor %}                            
+                    {% endif %}                
+                    <div class="feed_card_created_at">
+                        {{ daycount }}
+                    </div>
+                </div>
+                <br>
+                <div class="feed_card_author">
+                {{ post.author }}
+                </div> 
+                <div class="feed_card_liked">
+                댓글 : {{ post.comment_set.all.count }}
+                </div>
+            </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <br>
+    <div>
+    <a href="{% url 'posts:new' %}">새 글</a>
+    </div>
+</div>
+{% endblock %}

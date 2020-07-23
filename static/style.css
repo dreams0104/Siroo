@@ -1,17 +1,112 @@
-#header {
-    width: 100%
-    position: absolute;
-    height: 70px;
-    left: 0px;
-    border-bottom : 1px solid #E0E0E0;
-    padding-top: 28px;
-}
-
-main .container {
-    margin-top: 30px;
+/* 레이아웃 */
+header {
+    margin: 0 auto;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff; 
+    border-bottom: 1px solid #E0E0E0;
 }
 
 footer {
-    clear: both;
-    height: 100px;
+    padding: 0; 
+    height: 60px;
+    position: relative;
+    /* 푸터라인 확인 시 주석 제거 */
+    /* border-top: 1px solid #E0E0E0;*/
+}
+
+/* flexbox */
+
+.container {
+    margin: 0 auto;
+    width: 960px;  
+}
+
+/* 헤더 */
+
+.header {   
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.header .container .wrap{
+    display: flex;
+    flex-wrap: wrap;  
+    flex-direction: row;
+    justify-content:space-between;  
+    padding : 0 11px 0 11px;  
+}
+
+.header_logo {
+    width: 105px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.header_menu {
+    width:500px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-end;
+    align-items: center;
+    flex-wrap: wrap;  
+}
+
+.navbutton {
+    width: 145px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;  
+}
+
+.navbutton button {
+    height: 29px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+}
+/* 푸터 */
+
+.footer {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.footer .container {
+    height: 60px;
+    display: flex;
+    flex-wrap: wrap;  
+    justify-content: flex-end;
+    align-items: flex-end;    
+}
+
+.contents {
+
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-end;
+}
+
+.content {
+    margin: 0 11px 0 24px;
+    align-self: center;
+}
+
+.footer .content a {
+    color: black;
 }
