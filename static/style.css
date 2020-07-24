@@ -3,35 +3,12 @@
 footer {
     padding: 0; 
     height: 60px;
-    position: relative;
+    position: relative;    
     /* 푸터라인 확인 시 주석 제거 */
     /* border-top: 1px solid #E0E0E0;*/
 }
 
 /* flexbox */
-
-@media (max-width: 575.98px) {
-    .container {
-        width : 480px;        
-    }
-    .header_logo .navbutton {
-        display: block;
-    }
-    .menu_wrap.navbutton {
-        display: none;
-    }
-}
-
-// Small devices (landscape phones, less than 768px)
-@media (max-width: 767.98px) { ... }
-
-// Medium devices (tablets, less than 992px)
-@media (max-width: 991.98px) { ... }
-
-// Large devices (desktops, less than 1200px)
-@media (max-width: 1199.98px) { ... }
-
-
 
 
 .container {

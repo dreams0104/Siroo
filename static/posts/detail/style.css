@@ -1,0 +1,210 @@
+
+
+.background {
+    background-color: #F3F3F3;
+    width: 100%;
+    min-height: 790px;
+    margin: 0;
+    padding: 0;
+    padding-top:39px;
+    box-sizing: border-box;
+}
+
+.detail_box {
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding-top: 24px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 67px;
+    background-color: #fff;
+    width: 630px;
+    display: flex;
+    flex-direction:column;
+    justify-content: flex-start;    
+}
+
+.text {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: #959191;
+    margin-bottom: 7px;
+}
+
+.topic_tags{
+    box-sizing: border-box;
+    height: 31px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center; 
+    margin-bottom: 24px;   
+}
+
+.topic_tag {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    text-align: center;
+    color: #fff;
+    padding: 4px 10px 8px 10px;
+    height: 31px;
+    background: #50BB1D;
+    border-radius: 30px;
+    box-sizing: border-box;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.topic_tag a{
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #fff;
+}
+
+.vils_daycount {
+    box-sizing: border-box;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+}
+
+.vils {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+}
+
+.vil {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #AE7D67;
+    align-self: flex-start;
+    margin-right: 8px;
+    margin-bottom: 10px;
+}
+
+.daycount {
+    align-self: flex-end;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #B2B2B2;       
+}
+
+.profile_info {
+    box-sizing: border-box;
+    height: 52px;
+    display: flex;
+    flex-direction: row;
+    justify-items: flex-start;
+    margin-bottom: 43px;
+}
+
+.profile_photo {
+    width: 52px;
+    height: 52px;
+    box-sizing: border-box;
+    border-radius: 26px;
+    background-color: #C4C4C4;
+    margin-right: 10px;
+}
+
+.nickname_vil{
+    box-sizing: border-box;
+    height: 52px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.nickname {
+    height: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    color: #333333;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.uservil {
+    height: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    color: #959191;
+    margin-bottom: 5px;
+}
+    
+.post_body {
+    min-height: 200px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000;
+}
+
+.update_delete_like_comment {
+    display:flex;
+    height: 19px;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.update_delete {
+    width : 100px;
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    color: #333333;
+}
+
+.like_comment {
+    display: flex;
+    height: 19px;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #B2B2B2;
+}
+
+.like_comment img {
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.line {
+    height: 2px;
+    width: 100%;
+    border-top: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    margin-bottom: 18px;
+}
+
+
+.comments_view {
+    
+}

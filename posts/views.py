@@ -46,9 +46,19 @@ def detail(request, post_id):
 
     #좋아요 기능
     likedusers = list(post.liked_users.all())
+    likedusers_nicks = [*map(lambda user:user.nickname, list(post.liked_users.all()))]
+
+    if len(likedusers_nicks) > 0:
+        likedusers_nick = likedusers_nicks.pop()
+        print(likedusers_nick)
+
     liked_user = None
     if len(likedusers) > 0:
-        liked_user = likedusers.pop(1) + "님 외 " + str(len(likedusers)) + "명이 좋아합니다."
+        if len(likedusers) == 1:
+            for a in likedusers:
+                liked_user = likedusers_nick + " 님이 좋아합니다"
+        else:
+            liked_user = likedusers_nick + " 님 외 " + str(len(likedusers)) + "명이 좋아합니다."
     else:
         liked_user = ""
 
@@ -178,7 +188,7 @@ def comment_create(request, post_id):
     post = Post.objects.get(id=post_id)
     user = request.user
     body = request.POST['body']
-    comment = Comment(user=user, body=body)
+    comment = Comment(post=post, user=user, body=body)
     comment.save()
 
     return redirect('posts:detail', post_id=post.id)

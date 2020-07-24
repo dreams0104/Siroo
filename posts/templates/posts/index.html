@@ -2,7 +2,7 @@
 
 {% load static %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'posts/style.css' %}">
+<link rel="stylesheet" href="{% static 'posts/index/style.css' %}">
 {% endblock %}
 {% block content %}
 <div class="container">
@@ -13,7 +13,7 @@
             <p>내 이야기를 공유하고 싶다면,</p>
         </div>
         <div class="newpost">
-            <a href="{% url 'posts:new' %}"><img src="{% static 'images/newpost.svg'%}"></a>
+            <a href="{% url 'posts:new' %}"><img src="{% static '/images/newpost.svg'%}"></a>
         </div>
     </div>
     <div class="index_topics">
@@ -84,4 +84,5 @@
         {% endif %}
     </div>
 </div>
+
 {% endblock %}

@@ -2,15 +2,15 @@
 
 {% load static %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'new/style.css' %}">
+<link rel="stylesheet" href="{% static 'posts/new/style.css' %}">
 {% endblock %}
 {% block content %}
-<div class="background">
     <div class="menuname">
         <div class="container">
             글쓰기   
         </div>     
     </div>
+    <div class="background">
     <div class="container">
         <div class="editor_box">
             <div class="wrap_box">
@@ -37,15 +37,15 @@
                     <label for="villiage3"> 청라3동 </label>                    
                 </div>
                 <div class="upload_assets">
-                <div class="img1"><img src="{% static 'new/images/imageupload.svg'%}"></div>
-                <div class="img2"><img src="{% static 'new/images/fileupload.svg'%}"></div>
+                <div class="img1"><img src="{% static 'images/imageupload.svg'%}"></div>
+                <div class="img2"><img src="{% static 'images/fileupload.svg'%}"></div>
                 </div>
                 <div class="input_textbox">
-                    <label for="body"> </label>
+                    <label for="body"></label>
                     <textarea cols="84" rows="20" name="body"></textarea>
                 </div>
                 <div class="submit_button">
-                    <button type="button" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;";>작성</button>
+                    <button type="submit" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;";>작성</button>
                 </div>     
             </div>
         </div>
@@ -54,20 +54,4 @@
 
 
 
-<!--
-    <h1>새 글 작성</h1>
-            <form action="{% url 'posts:create' %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <fieldset>      
-                    <label for="author">Author:</label><br>
-                    <input type="text" name="author"><br>
-                    <label for="body">Text: </label><br>
-                    <textarea cols=40 rows=10 name="body"></textarea>
-                    <br>
-                    <input type="submit" value="SUBMIT">
-                </fieldset>
-            </form>     
-            <a href="{% url 'posts:index' %}">목록</a>
-        
-        -->
 {% endblock %}

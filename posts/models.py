@@ -15,10 +15,12 @@ class Post(models.Model):
     #auto_now=수정시마다 반영, auto_now_add=생성일자로 고정
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     #ManytoManyField로 태그 저장.
-    taginpost = models.ManyToManyField("Tag", related_name='taged_post')
-    liked_users = models.ManyToManyField("accounts.User", related_name='liked_posts')
+    taginpost = models.ManyToManyField("Tag", related_name='taged_post', blank=True)
+    liked_users = models.ManyToManyField("accounts.User", related_name='liked_posts', blank=True)
 
     #property를 이용하면, 클래스 안의 변수의 값 불러와서 커스텀한 뒤 내보낼 수 있음.
+  
+    
     @property
     def daycount(self):
 
@@ -101,7 +103,7 @@ class Comment(models.Model):
 
     def __str__(self):
         if self.user:
-            return f'user{self.user.get_username} : body{self.body} {self.daycount}'
+            return f'user{self.user.nickname} : body{self.body} {self.daycount}'
 
         return f'body{self.body} {self.daycount}'
 

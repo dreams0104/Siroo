@@ -38,11 +38,11 @@ def login(request):
     #POST Method
     
     if request.method == 'POST':
-        if request.POST['username'] and request.POST['password']:
+        if request.POST['email'] and request.POST['password']:
             
             user = auth.authenticate(
                 request,
-                username=request.POST['username'],
+                email=request.POST['email'],
                 password=request.POST['password']
             )
             
