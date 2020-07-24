@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'yky8ec1!!g!*zg%fdh=0c9s8q-1jv3k_x1*n1^3n5xt1_blq8z'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with gitdebug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -125,3 +125,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
 os.path.join(BASE_DIR, 'static'),
 ) 
+
+AUTH_USER_MODEL = 'accounts.User'

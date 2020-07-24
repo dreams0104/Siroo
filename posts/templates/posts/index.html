@@ -72,10 +72,11 @@
             </div>
             <div class="feed_card_info">
                 <div class="feed_card_author">
-                    {{ post.author }}
+                    {{ post.user.nickname }}
                 </div> 
                 <div class="feed_card_liked">
                     댓글 : {{ post.comment_set.all.count }}
+                    좋아요 : {{ post.liked_users.count }}
                 </div>
             </div>
         </div>         
