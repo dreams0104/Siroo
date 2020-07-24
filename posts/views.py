@@ -10,43 +10,13 @@ from django.db.models import Count
 def index(request):
 
     posts = Post.objects.all().order_by('-created_at')
+    
     #전체 태그에서 가장 많이 쓰인 태그 불러오기    
     tags = Tag.objects.all().annotate(num_posts=Count('taged_post')).order_by('-num_posts')        
     hot_tags = list(tags)[0:9]
 
-    #daycount 각각 만들어줌.
-    if len(list(posts)) > 0:
-        for post in posts:
-            past = post.created_at
-            now = timezone.now()
-            sec = now - past
-            countd = int((sec).total_seconds()/3600)
-            countday = int((sec).total_seconds()/3600/24)
-            daycount = ""
-            #past와 now를 문자열로나눈 뒤, 날짜가 보이는 부분을 인덱싱함
-            #시간이 경과 되었어도 날짜가 바뀐지를 확인하기 위함.
-            a = str(past)[0:10]
-            b = str(now)[0:10]
-            if a == b:
-                daycount = "오늘 "
-            elif countd < 24 :
-                daycount = "하루 전"
-            else :
-                daycount = str(countday) + "일 전"  
-
-        daycounts_dic = {}
-        daycounts_dic[post] = daycount
-        post.daycount = daycounts_dic.get(post)
-        daycount = post.daycount
-    else:
-        daycount = None
-        pass
-
-    print(daycount)
-
-    context = {
+    context = {        
         'posts' : posts,
-        'daycount' : daycount,
         'hot_tags' : hot_tags,
     }
     
@@ -58,10 +28,9 @@ def detail(request, post_id):
     post = Post.objects.get(id=post_id)
     #detail templates에서 사용하기 위해 context에 제공해야하기에 쿼리셋을 리스트형태로 받아옴.
     tags = list(post.taginpost.all())
-    print(tags)
-    tag_ids =[*map(lambda tag:tag.id, list(post.taginpost.all()))]
     #연관 tag의 id를 int형태로 받아옴.
-    print(tag_ids)
+    tag_ids =[*map(lambda tag:tag.id, list(post.taginpost.all()))]
+    
     if len(tag_ids) > 0:
         tag_id = tag_ids.pop()
         tag = Tag.objects.get(id=tag_id)
@@ -69,32 +38,11 @@ def detail(request, post_id):
     else:
         pass
 
-
-    #날짜 계산 기능
-    past = post.created_at
-    now = timezone.now()
-    sec = now - past
-    countd = int((sec).total_seconds()/3600)
-    countday = int((sec).total_seconds()/3600/24)
-    daycount = ""
-    #past와 now를 문자열로나눈 뒤, 날짜가 보이는 부분을 인덱싱함
-    #시간이 경과 되었어도 날짜가 바뀐지를 확인하기 위함.
-    a = str(past)[0:10]
-    b = str(now)[0:10]
-
-    if a == b:
-        daycount = "오늘 작성됨"
-    elif countd < 24 :
-        daycount = "1일 전에 작성됨"
-    else :
-        daycount = str(countday) + "일 전에 작성 됨"
-
     #댓글 뷰 기능
     comments = post.comment_set.all().order_by('-id')
 
     context = {
         'post' : post,
-        'daycount': daycount,
         'comments' : comments,
         'tags' : tags,
 }

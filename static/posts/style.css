@@ -67,11 +67,12 @@
 
 .topics_tags {
     margin-top: 15px;
-    height: 31px;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     padding: 0 11px 0 11px;
+    flex-wrap: wrap;
 }
 
 .topics_tag {
@@ -86,6 +87,7 @@
     border-radius: 15px;
     box-sizing: border-box;
     margin-right: 4px;
+    margin-bottom: 4px;
 }
 
 .topics_tag a{
@@ -115,26 +117,20 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 64px 11px 0 11px;
+    margin-bottom:5px;
 }
     
-}
 
 .index_feed {
     padding-top: 18px;
     display: flex;
-    flex-direction: row;
     justify-content: flex-start;
-    align-content: flex-start;
-    align-items: center;
     flex-wrap: wrap;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #E0E0E0;
 }
 .wrap_feed {
-    display: inline-block;
-    width:234.5px;
 
 }
+
 .feed_card {
     width: 218px;
     height: 161px;
@@ -167,7 +163,7 @@
 }
 
 .tags {
-    width: 140px;
+    
     display: flex;
     align-self:flex-start;
     flex-direction: row;
@@ -190,7 +186,7 @@
 }
 
 .feed_card_created_at {
-
+    width: 46px;
     box-sizing: border-box;
     height: 52px;
     font-family: 'DM Sans', sans-serif;

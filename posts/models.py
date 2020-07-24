@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+from datetime import datetime
 
 # Create your models here.
 
@@ -11,8 +13,41 @@ class Post(models.Model):
     #ManytoManyField로 태그 저장.
     taginpost = models.ManyToManyField("Tag", related_name='taged_post')
 
-    def __str__(self):
-        return f'author{self.author} : body{self.body} / tag {self.taginpost.all()}'
+    @property
+    def daycount(self):
+
+        past = self.created_at
+        now = timezone.now()
+        sec = now - past
+        countminutes = int((sec).total_seconds()/60)
+        counttimes = int((sec).total_seconds()/3600)
+        countdays = int((sec).total_seconds()/3600/24)
+        countmonths = int((sec).total_seconds()/3600/24/744)
+        countyears = int((sec).total_seconds()/3600/24/365)
+        #past와 now를 문자열로나눈 뒤, 날짜가 보이는 부분을 인덱싱함
+        #시간이 경과 되었어도 날짜가 바뀐지를 확인하기 위함.
+        a = str(past)[0:10]
+        b = str(now)[0:10]
+        c = str(past)[11:13]
+        d = str(now)[11:13]
+
+        if a == b:
+            if c == d:
+                return str(countminutes) + "분 전"
+            else:
+                return str(counttimes) + "시간 전" 
+        elif countdays < 24:
+            return "1일 전"
+        elif countdays < 744: 
+            return str(countdays) + "일 전"
+        elif countdays < 8760:
+            return str(countmonths) + "달 전"
+        else:
+            return str(countyears) + "년 전"
+
+    def __str__(self):  
+
+        return f'author{self.author} : body{self.body} / tag {self.taginpost.all()} {self.daycount}'
 
 class Comment(models.Model):
     
@@ -24,8 +59,40 @@ class Comment(models.Model):
     #ManytoManyField로 태그 저장.
     tagincomment = models.ManyToManyField("Tag", related_name='taged_comment')
 
+    @property
+    def daycount(self):
+
+        past = self.created_at
+        now = timezone.now()
+        sec = now - past
+        countminutes = int((sec).total_seconds()/60)
+        counttimes = int((sec).total_seconds()/3600)
+        countdays = int((sec).total_seconds()/3600/24)
+        countmonths = int((sec).total_seconds()/3600/24/744)
+        countyears = int((sec).total_seconds()/3600/24/365)
+        #past와 now를 문자열로나눈 뒤, 날짜가 보이는 부분을 인덱싱함
+        #시간이 경과 되었어도 날짜가 바뀐지를 확인하기 위함.
+        a = str(past)[0:10]
+        b = str(now)[0:10]
+        c = str(past)[11:13]
+        d = str(now)[11:13]
+
+        if a == b:
+            if c == d:
+                return str(countminutes) + "분 전"
+            else:
+                return str(counttimes) + "시간 전" 
+        elif countdays < 24:
+            return "1일 전"
+        elif countdays < 744: 
+            return str(countdays) + "일 전"
+        elif countdays < 8760:
+            return str(countmonths) + "달 전"
+        else:
+            return str(countyears) + "년 전"
+
     def __str__(self):
-        return f'author{self.author} : body{self.body}'
+        return f'author{self.author} : body{self.body} {self.daycount}'
 
 class Tag(models.Model):
 

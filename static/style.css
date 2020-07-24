@@ -1,14 +1,4 @@
 /* 레이아웃 */
-header {
-    margin: 0 auto;
-    height: 60px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: #fff; 
-    border-bottom: 1px solid #E0E0E0;
-}
 
 footer {
     padding: 0; 
@@ -19,6 +9,30 @@ footer {
 }
 
 /* flexbox */
+
+@media (max-width: 575.98px) {
+    .container {
+        width : 480px;        
+    }
+    .header_logo .navbutton {
+        display: block;
+    }
+    .menu_wrap.navbutton {
+        display: none;
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) { ... }
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) { ... }
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) { ... }
+
+
+
 
 .container {
     margin: 0 auto;
@@ -33,25 +47,45 @@ footer {
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
+    margin: 0 auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff; 
+    border-bottom: 1px solid #E0E0E0;
 }
 
-.header .container .wrap{
+.header_wrap {
     display: flex;
-    flex-wrap: wrap;  
-    flex-direction: row;
-    justify-content:space-between;  
-    padding : 0 11px 0 11px;  
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .header_logo {
+    padding : 0 0 0 11px;
     width: 105px;
     height: 60px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    align-self:flex-start;
+    justify-self: space-between;
+}
+
+.header_logo .navbutton{
+    display: none;
+}
+
+.menu_wrap {
+    display: inline-flex;
+    flex-wrap: wrap;  
+    flex-direction: row;
+    justify-content:space-between;  
+    padding : 0 11px 0 0;  
 }
 
 .header_menu {
-    width:500px;
+    width: 355px;
     height: 60px;
     display: flex;
     justify-content: space-between;
@@ -84,22 +118,25 @@ footer {
     font-style: normal;
     font-weight: bold;
     font-size: 12px;
+    margin-top: 5px;
+    align-items: flex-end;
 }
 
 .footer .container {
     height: 60px;
     display: flex;
     flex-wrap: wrap;  
-    justify-content: flex-end;
-    align-items: flex-end;    
+    justify-content: flex-end;    
 }
 
 .contents {
 
     height: 60px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-self: flex-end;
+    flex-wrap: wrap;
 }
 
 .content {
