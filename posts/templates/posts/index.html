@@ -2,35 +2,87 @@
 
 {% load static %}
 {% block style %}
-
+<link rel="stylesheet" href="{% static 'posts/index/style.css' %}">
 {% endblock %}
 {% block content %}
 <div class="container">
-    <h1>메인컨텐츠</h1>
-    {% if posts %}
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>작성자</th>
-                    <th>본문</th>
-                    <th>게시일</th>
-                    <th>상세</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for post in posts %}
-                <tr>
-                    <td>{{ post.id }}</td>
-                    <td>{{ post.author }}</td>
-                    <td>{{ post.body }}</td>
-                    <td>{{ post.created_at }}</td>
-                    <td><a href="{% url 'posts:detail' post.id %}">보기</a></td>
-                </tr>
+    <div class="index_banners">
+        <div class="write_comment">
+            지금, 내 주변에서 무슨 일이<br> 
+            일어나고 있을까요?
+            <p>내 이야기를 공유하고 싶다면,</p>
+        </div>
+        <div class="newpost">
+            <a href="{% url 'posts:new' %}"><img src="{% static '/images/newpost.svg'%}"></a>
+        </div>
+    </div>
+    <div class="index_topics">
+        <div class="select_vil">
+            <a href="">청라1동</a> 인기 토픽
+        </div>
+        <div class="select_vil_more">
+            <a href="">더보기</a>
+        </div>
+    </div>
+    <div class="topics_tags">
+        {% if hot_tags %}
+            {% for hot_tag in hot_tags%}
+                <a href="{% url 'posts:tag_filter' hot_tag.id %}">
+                <div class="topics_tag">                    
+                    #{{ hot_tag }} <span>{{ hot_tag.taged_post.all.count }}개</span>
+                </div>
+                </a>
             {% endfor %}
-            </tbody>
-        </table>
         {% endif %}
-        <a href="{% url 'posts:new' %}">새 글</a>
+    </div>
+    <div class="index_feeds">
+        <div class="select_vil">
+            <a href="">청라1동</a> OO님 주변 이야기
+        </div>
+        <div class="select_vil_more">
+            <a href="">더보기</a>
+        </div>
+    </div>
+    <div class="index_feed">
+        {% if posts %}
+        {% for post in posts %}
+        <div class="wrap_feed">
+            <div class="feed_card">
+                <div class="feed_card_body">
+                    <a href="{% url 'posts:detail' post.id %}">
+                        {{ post.body }}
+                    </a>                                           
+                </div>
+                <div class="feed_card_tag">
+                    <div class="tags">
+                    {% if post.taginpost.all %}                            
+                        {% for tag in post.taginpost.all %}
+                            <div class="tag">   
+                                #{{ tag }} 
+                            </div>
+                        {% endfor %}                            
+                        {% endif %}
+                    </div>
+                    <div class="feed_card_created_at">
+                        <div>
+                            {{ post.daycount }}
+                        </div>      
+                    </div>
+                </div>
+            </div>
+            <div class="feed_card_info">
+                <div class="feed_card_author">
+                    {{ post.user.nickname }}
+                </div> 
+                <div class="feed_card_liked">
+                    댓글 : {{ post.comment_set.all.count }}
+                    좋아요 : {{ post.liked_users.count }}
+                </div>
+            </div>
+        </div>         
+        {% endfor %}
+        {% endif %}
+    </div>
 </div>
+
 {% endblock %}

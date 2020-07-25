@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'posts/style.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>디테일</h1>
+    <a href="{% url 'posts:index' %}">Home</a>
+    <h3>작성자 : {{ post.author }}</h3>
+    <h4>태그 : {{ post.taginpost.all|join:", " }} </h4>
+    <h6>전체 태그를 일괄로 불러온 것!↑</h6>
+    <h6>전체 태그를 개별로 for문을 통해서 불러온 것↓</h6>
+    --------------------------
+    {% if tags %}
+    {% for tag in tags %}
+    <p>{{ tag }} : 관련 글 수 {{ tag.taged_post.all.count }}</p>
+    {% endfor %}
+    {% endif %}
+    ---------------------------
+    <p>{{ post.body }}</p>
+    <p>{{ daycount }}
+    <p>좋아요 외 몇명이 좋아합니다</p>    
+    <br>
+    {% if comments %}
+    {% for comment in comments %}
+    <p>작성자 : {{ comment.author }} 내용 : {{ comment.body }}</p>
+    {% endfor %}
+    {% endif %}
+    <form action="{% url 'posts:comment_update' comment.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset>      
+                    <label for="author">Author : </label><br>
+                    <input type="text" name="author" value="{{ comment.author }}"><br>
+                    <label for="body">Text : </label><br>
+                    <textarea cols=40 rows=1 name="body">{{ comment.body }}</textarea>
+                    <br>
+                    <input type="submit" value="SUBMIT">                    
+                </fieldset>
+            </form>     
+</div>
+{% endblock %}

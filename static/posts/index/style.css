@@ -1,0 +1,238 @@
+/* 배너 */
+
+.index_banners {
+    height: 250px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 17px 11px 0 11px;
+    border-radius: 8px;
+    background-image: url('images/index_banner.svg');
+}
+
+.write_comment {
+    margin-top: 27px;
+    margin-left : 37px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    color: #FFF
+}
+
+.write_comment p{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.newpost {
+    margin-left : 37px;
+    margin-top: 17px;
+    width: 128px; 
+    height: 31px; 
+    border-radius: 30px; 
+    background-color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 16px;
+}
+
+
+/* 토픽 */
+
+.index_topics {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 24px;
+    height: 31px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 11px 0 11px;
+}
+
+.select_vil {
+    height: 31px;
+}
+
+.select_vil_more {
+    height: 31px;
+}
+
+.topics_tags {
+    margin-top: 15px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0 11px 0 11px;
+    flex-wrap: wrap;
+}
+
+.topics_tag {
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #fff;
+    padding: 6px 8px 6px 8px;
+    height: 30px;
+    background: #50BB1D;
+    border-radius: 15px;
+    box-sizing: border-box;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.topics_tag a{
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #fff;
+}
+
+
+.topics_tag span {
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    color: #fff;
+}
+
+.index_feeds {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    height: 31px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 64px 11px 0 11px;
+}
+    
+
+.index_feed {
+    padding-top: 18px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.wrap_feed {
+
+}
+
+.feed_card {
+    width: 218px;
+    height: 161px;
+    border: 1px solid #E0E0E0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px; 
+    padding: 13px 17px 5px 17px;
+    margin : 17px 11px 0 11px;   
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.feed_card_body {
+    height:69px;
+    margin-bottom: 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    color: #000000;
+}
+
+.feed_card_tag {
+    height: 108px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tags {
+    
+    display: flex;
+    align-self:flex-start;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.tag {    
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: #FFFFFF;
+    height: 24px;
+    padding: 4px 8px 4px 8px;
+    background: #50BB1D;
+    border-radius: 15px;
+    box-sizing: border-box;
+    margin: 1px 1px;
+}
+
+.feed_card_created_at {
+    width: 46px;
+    box-sizing: border-box;
+    height: 52px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    text-align: right;
+    color: #B3B3B3;
+    align-self:flex-end;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+}
+
+.feed_card_info {
+    height: 39px;
+    width: 216px;
+    padding: 0;
+    border-left: 1px solid #E0E0E0;
+    border-right: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin : 0 11px 0 11px;   
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.feed_card_author {
+    box-sizing: border-box;
+    padding: 10px 0;
+    height: 39px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    align-self: center;
+}
+
+.feed_card_liked {
+    box-sizing: border-box;
+    padding: 10px 0;
+    height: 39px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    align-self: center;
+}

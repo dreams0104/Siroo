@@ -2,43 +2,145 @@
 
 {% load static %}
 {% block style %}
-
+<link rel="stylesheet" href="{% static 'posts/detail/style.css' %}">
 {% endblock %}
 {% block content %}
-<div class="container">
-    <h1>디테일</h1>
-    <a href="{% url 'posts:index' %}">Home</a>
-    <h3>작성자 : {{ post.author }}</h3>
+<div class="background">
+    <div class="container">
+        <div class="detail_box_wrap">        
+            <div class="detail_box">
+                <div class="text">
+                    토픽
+                </div>
+                <div class="topic_tags">
+                {% if tags %}
+                {% for tag in tags %}
+                <div class="topic_tag">
+                    {{ tag }} 
+                </div>
+                {% endfor %}
+                {% endif %}
+                </div>
+                <div class="text">
+                    장소
+                </div>
+                <div class="vils_daycount">
+                    <div class="vils">
+                        <img src="{% static 'images/map_pin.svg'%}" style="width: 22px; height: 22px;"><div class="vil">청라1동</div>
+                        <img src="{% static 'images/map_pin.svg'%}" style="width: 22px; height: 22px;"><div class="vil">검암동</div>
+                    </div>
+                    <div class="daycount">
+                        {{ post.daycount }}
+                    </div>
+                </div>
+                <div class="profile_info">
+                    <div class="profile_photo">                        
+                    </div>
+                    <div class="nickname_uservil">  
+                        <div class="nickname">
+                            {{ post.user.nickname }}
+                        </div>
+                        <div class="uservil">
+                            청라1동
+                        </div>                      
+                    </div>
+                </div>
+                <div class="post_body">
+                    {{ post.body }}
+                </div>
+                <div class="update_delete_like_comment">
+                    <div class="update_delete">
+                        {% if user.nickname == post.user.nickname %}   
+                        <div>
+                            <a href="{% url 'posts:edit' post.id %}">수정하기</a>
+                        </div>
+                        <div>
+                        <a href="{% url 'posts:delete' post.id %}">삭제하기</a>
+                        </div>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                    <div class="like_comment">
+                        <div><img src="{% static 'images/empty_like.svg'%}" style="width: 16px; height: 14.86px;"></div>
+                        <div>좋아요 숫자</div>
+                        <div><img src="{% static 'images/comment_count.svg'%}" style="width: 16px; height: 14.86px;"></div>
+                        <div>{{ post.liked_users.count }}</div>
+                    </div>
+                </div>
+                <div class="line">
+                </div>
+                {% if comments %}
+                {% for comment in comments %}
+                <div class="comments_view">
+                    <div class="profile_photo">                        
+                    </div>
+                    <div class="comment_nickname_uservil">  
+                        <div class="nickname">
+                            {{ comment.user.nickname }}
+                        </div>
+                        <div class="uservil">
+                            청라 1동
+                        </div>
+                        <div class="uservil">
+                            {{ comment.body }}
+                        </div>
+                        {{ comment.daycount }}
+                    </div>
+                    {% if user.nickname == comment.user.nickname %}
+    <a href="{% url 'posts:comment_edit' comment.id %}">Edit</a>
+    <a href="{% url 'posts:comment_delete' comment.id %}">Delete</a>
+    {% else %}
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+                </div>                
+            </div>
+        </div>
+    </div>                        
+</div>
+
+
+
+<!--
+    <h3>작성자 : {{ post.user.nickname }} </h3>
     <h4>태그 : {{ post.taginpost.all|join:", " }} </h4>
     <h6>전체 태그를 일괄로 불러온 것!↑</h6>
     <h6>전체 태그를 개별로 for문을 통해서 불러온 것↓</h6>
+    --------------------------
     {% if tags %}
     {% for tag in tags %}
-    <p>{{ tag }}</p>
+    <p>{{ tag }} : 관련 글 수 {{ tag.taged_post.all.count }}</p>
     {% endfor %}
     {% endif %}
-    <br>
+    ---------------------------
     <p>{{ post.body }}</p>
-    <p>{{ daycount }}
-    <p>좋아요 외 몇명이 좋아합니다</p>
+    <p>{{ post.daycount }}
+    <p>좋아요 : {{ post.liked_users.count }} / {{ liked_user }}</p> 
+    {% if user.nickname == post.user.nickname %}   
     <a href="{% url 'posts:edit' post.id %}">Edit</a>
     <a href="{% url 'posts:delete' post.id %}">Delete</a>
-    <br>
+    {% else %}
+    {% endif %}
     {% if comments %}
     {% for comment in comments %}
-    <p>작성자 : {{ comment.author }} 내용 : {{ comment.body }}</p>
+    <p>{{ comment.user.nickname }} : {{ comment.body }} {{ comment.daycount }}</p>
+    {% if user.nickname == comment.user.nickname %}
+    <a href="{% url 'posts:comment_edit' comment.id %}">Edit</a>
+    <a href="{% url 'posts:comment_delete' comment.id %}">Delete</a>
+    {% else %}
+    {% endif %}
     {% endfor %}
     {% endif %}
     <form action="{% url 'posts:comment_create' post.id %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <fieldset>      
-                    <label for="author">Author : </label><br>
-                    <input type="text" name="author" value="{{ comment.author }}"><br>
-                    <label for="body">Text : </label><br>
+                    {{ user.nickname }}
+                    <label for="body"></label><br>
                     <textarea cols=40 rows=1 name="body">{{ comment.body }}</textarea>
                     <br>
                     <input type="submit" value="SUBMIT">                    
                 </fieldset>
             </form>     
 </div>
+-->
 {% endblock %}

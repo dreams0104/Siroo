@@ -7,11 +7,11 @@
 {% block content %}
 <div class="container">
     <h1>글 수정</h1>
-        <!--<h2>id : {{ post.user }}</h2>-->
+    작성자 : {{ post.user.nickname }} <br>
             <form action="{% url 'posts:update' post.id %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <fieldset>      
-                    <label for="author">Author:</label><br>
+                    
                     <input type="text" name="author" value="{{ post.author }}"><br>
                     <label for="body">Text: </label><br>
                     <textarea cols=40 rows=10 name="body">{{ post.body }}</textarea>

@@ -2,22 +2,56 @@
 
 {% load static %}
 {% block style %}
-
+<link rel="stylesheet" href="{% static 'posts/new/style.css' %}">
 {% endblock %}
 {% block content %}
-<div class="container">
-    <h1>새 글 작성</h1>
-        <!--<h2>id : {{ post.user }}</h2>-->
+    <div class="menuname">
+        <div class="container">
+            글쓰기   
+        </div>     
+    </div>
+    <div class="background">
+    <div class="container">
+        <div class="editor_box">
+            <div class="wrap_box">
+                <div class="editor_text">
+                    카테고리 태그(최대 5개)
+                </div>
             <form action="{% url 'posts:create' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <fieldset>      
-                    <label for="author">Author:</label><br>
-                    <input type="text" name="author"><br>
-                    <label for="body">Text: </label><br>
-                    <textarea cols=40 rows=10 name="body"></textarea>
-                    <br>
-                    <input type="submit" value="SUBMIT">
-                </fieldset>
-            </form>     
-            <a href="{% url 'posts:index' %}">목록</a>
+                <div class="input_tag">
+                    <input type="text" name="tag" value="본문에서도 #을 이용하여 태그를 입력할 수 있습니다:)">
+                </div>
+                <div class="input_tag_guide">
+                    '#'과 스페이스(공백)으로 태그를 구분할 수 있습니다.
+                </div>
+                <div class="editor_text">
+                    글 공유 지역 선택
+                </div>
+                <div class="select_vil">
+                    <input type="checkbox" id="villiage1" name="villiage1" value="청라1동">
+                    <label for="villiage1"> 청라1동 </label>
+                    <input type="checkbox" id="villiage2" name="villiage2" value="청라1동">
+                    <label for="villiage2"> 청라2동 </label>    
+                    <input type="checkbox" id="villiage3" name="villiage3" value="청라1동">
+                    <label for="villiage3"> 청라3동 </label>                    
+                </div>
+                <div class="upload_assets">
+                <div class="img1"><img src="{% static 'images/imageupload.svg'%}"></div>
+                <div class="img2"><img src="{% static 'images/fileupload.svg'%}"></div>
+                </div>
+                <div class="input_textbox">
+                    <label for="body"></label>
+                    <textarea cols="84" rows="20" name="body"></textarea>
+                </div>
+                <div class="submit_button">
+                    <button type="submit" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;";>작성</button>
+                </div>     
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 {% endblock %}
