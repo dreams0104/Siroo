@@ -19,8 +19,7 @@ class Post(models.Model):
     liked_users = models.ManyToManyField("accounts.User", related_name='liked_posts', blank=True)
 
     #property를 이용하면, 클래스 안의 변수의 값 불러와서 커스텀한 뒤 내보낼 수 있음.
-  
-    
+      
     @property
     def daycount(self):
 
