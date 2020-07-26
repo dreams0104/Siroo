@@ -289,3 +289,20 @@ def taged_post_filter(request, tag_id):
     }
     
     return render(request, 'posts/taged_post_filter.html', context)
+
+
+def filter_page(request):
+
+    posts = Post.objects.all().order_by('-created_at')
+    
+    #전체 태그에서 가장 많이 쓰인 태그 불러오기    
+    tags = Tag.objects.all().annotate(num_posts=Count('taged_post')).order_by('-num_posts')        
+    hot_tags = list(tags)[0:9]
+
+    context = {        
+        'posts' : posts,
+        'hot_tags' : hot_tags,
+    }
+
+    return render(request, 'posts/filter_page.html', context )
+
