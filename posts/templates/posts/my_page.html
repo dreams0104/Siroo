@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'posts/detail/style.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="followers">
+        {% if profiles %}
+        {% for profile in profiles %}
+            팔로워 수 : {{ profile.followers.count }}명
+        {% endfor %}
+        {% endif %}
+        <div>
+        {% if follower_output%}
+            {{ follower_output }}
+        {% endif %}
+        </div>
+    </div>
+    <div class="index_feed">
+        {% if my_posts %}
+        {% for my_post in my_posts %}
+        <div class="wrap_feed">
+            <div class="feed_card">
+                <div class="feed_card_body">
+                    <a href="{% url 'posts:detail' my_post.id %}">
+                        {{ my_post.body }}
+                    </a>                                           
+                </div>
+                <div class="feed_card_tag">
+                    <div class="tags">
+                    {% if my_post.taginpost.all %}                            
+                        {% for tag in my_post.taginpost.all %}
+                            <div class="tag">   
+                                #{{ tag }} 
+                            </div>
+                        {% endfor %}                            
+                        {% endif %}
+                    </div>
+                    <div class="feed_card_created_at">
+                        <div>
+                            {{ my_post.daycount }}
+                        </div>      
+                    </div>
+                </div>
+            </div>
+            <div class="feed_card_info">
+                <div class="feed_card_author">
+                    {{ my_post.user.nickname }}
+                </div> 
+                <div class="feed_card_liked">
+                    댓글 : {{ my_post.comment_set.all.count }}
+                    좋아요 : {{ my_post.liked_users.count }}
+                </div>
+            </div>
+        </div>         
+        {% endfor %}
+        {% endif %}
+    </div>
+
+
+{% endblock %}

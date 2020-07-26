@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Post, Comment, Tag
+from .models import Post, Comment, Tag, User_profile
 from accounts.models import User
 from django.utils import timezone
 from datetime import datetime
@@ -32,8 +32,8 @@ def detail(request, post_id):
     #detail templates에서 사용하기 위해 context에 제공해야하기에 쿼리셋을 리스트형태로 받아옴.
     tags = list(post.taginpost.all())
     #연관 tag의 id를 int형태로 받아옴.
+    print(tags)
     tag_ids =[*map(lambda tag:tag.id, list(post.taginpost.all()))]
-    
     if len(tag_ids) > 0:
         tag_id = tag_ids.pop()
         tag = Tag.objects.get(id=tag_id)
@@ -289,3 +289,43 @@ def taged_post_filter(request, tag_id):
     }
     
     return render(request, 'posts/taged_post_filter.html', context)
+
+
+#성민/my_page의 기초 backbone
+@login_required
+def profile_page(request, user_id):
+    
+    
+    profile_user = user_id
+    my_posts = list(Post.objects.filter(user = profile_user))
+    profiles = list(User_profile.objects.filter(user = profile_user))
+
+
+    #연관 followers의 id를 받아옴.
+    profile = User_profile.objects.get(user = profile_user)
+    followers = list(profile.followers.all())
+    followers_nicks = [*map(lambda user:user.nickname, list(profile.followers.all()))]
+    follower_output = None
+    if len(followers_nicks) > 0:
+        if len(followers_nicks) == 1:
+            for a in followers_nicks:
+                follower_output = a + " 님이 팔로우합니다"
+                print(follower_output)
+        else:
+            followers_nick = followers_nicks.pop()
+            follower_output = followers_nick + " 님 외 " + str(len(followers_nicks)) + "명 팔로우합니다."
+    else:
+        follower_output = ""
+  
+    context = {'my_posts' : my_posts,
+               'profiles' : profiles,
+               'follower_output' : follower_output}
+    return render(request, 'posts/my_page.html', context)
+
+def post_to_user(request, post_id):
+    
+    
+    post  = Post.objects.get(id = post_id)
+    user_id = post.user.id
+   
+    return redirect('posts:profile_page', user_id=user_id)

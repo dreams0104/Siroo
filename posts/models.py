@@ -17,7 +17,8 @@ class Post(models.Model):
     #ManytoManyField로 태그 저장.
     taginpost = models.ManyToManyField("Tag", related_name='taged_post', blank=True)
     liked_users = models.ManyToManyField("accounts.User", related_name='liked_posts', blank=True)
-
+    
+    
     #property를 이용하면, 클래스 안의 변수의 값 불러와서 커스텀한 뒤 내보낼 수 있음.
       
     @property
@@ -115,5 +116,17 @@ class Tag(models.Model):
         return f'{self.tag}'
 
 
+class User_profile(models.Model):
+
+    #성민 my_page용 followers model추가
+    user = models.ForeignKey("accounts.User", on_delete=models.CASCADE, null=True)
+    followers = models.ManyToManyField("accounts.User", related_name='followers', blank=True)
+
+    def __str__(self):
+        if self.user:
+            return f'user{self.user.nickname} : followers{self.followers.all()}'
+
+
+    
 
 

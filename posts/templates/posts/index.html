@@ -72,7 +72,9 @@
             </div>
             <div class="feed_card_info">
                 <div class="feed_card_author">
-                    {{ post.user.nickname }}
+                <a href="{% url 'posts:post_to_user' post.id %}">
+                        {{ post.user.nickname }}
+                </a>  
                 </div> 
                 <div class="feed_card_liked">
                     댓글 : {{ post.comment_set.all.count }}

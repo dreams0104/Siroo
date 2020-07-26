@@ -33,12 +33,14 @@
                             <div class="header_menu">
                                 <div><a href="{% url 'posts:index' %}">우리 동네 이야기</a></div>
                                 <div><a href="">우리 동네 마켓</a></div>
-                                <div><a href="">마이페이지</a></div>
-                                <div> ｜ </div>
+                                
+                                <div><a href="{% url 'posts:profile_page'  user.id %}">마이페이지</a></div>
+                                
+                                <div> </div>
                             </div>                        
                             <div class="navbutton">
                                 <button type="button" style="width: 61px; border: 1px solid #333333; background-color:white; color: #333333;">로그인</button>
-                                <button type="button" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;";>회원가입</button>
+                                <button type="button" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;">회원가입</button>
                             </div>
                         </div>
                     </div>
