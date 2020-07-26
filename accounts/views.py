@@ -59,6 +59,7 @@ def login(request):
     return render(request, 'accounts/login.html', context)
 
 def logout(request):
+    print(1)
     if request.method == 'POST':
         auth.logout(request)
     return redirect('posts:index')
