@@ -57,6 +57,9 @@
     box-sizing: border-box;
     margin-right: 4px;
     margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;   
 }
 
 .topic_tag a{

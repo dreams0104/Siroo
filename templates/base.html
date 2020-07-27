@@ -14,8 +14,6 @@
 {% endblock %}
     </head>
     <body>
-<!--{% if user.is_authenticated %}
-{% endif %}-->
         <header id="header">
             <div class="header">
                 <div class="container">   
@@ -23,35 +21,30 @@
                         <div class="header_logo">
                             <div>
                                 <a href="{% url 'posts:index' %}"><img src="{% static 'images/index_logo.svg' %}"></a>
-                            </div>
-                            <div class="navbutton">
-                                <button type="button" style="width: 61px; border: 1px solid #333333; background-color:white; color: #333333;">로그인</button>
-                                <button type="button" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;";>회원가입</button>
                             </div>                        
                         </div>
                         <div class="menu_wrap">
                             <div class="header_menu">
                                 <div><a href="{% url 'posts:index' %}">우리 동네 이야기</a></div>
                                 <div><a href="">우리 동네 마켓</a></div>
-                                <div><a href="">마이페이지</a></div>
+                                <div><a href="">ABOUT</a></div>
                                 <div> ｜ </div>
-                            </div>
-                        </div>         
-                        {% if user.is_authenticated %}
-                        <div class="navbutton">
-                            <form action="{% url 'accounts:logout' %}" method="POST">
-                        {% csrf_token %}
-                                <button type="submit" style="width: 61px; border: 1px solid #333333; background-color:white; color: #333333;">로그아웃</button>
-                            </form>
-                                <button type="button" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;";>마이페이지</button>
-                        </div> 
-                        {% else %}                                        
+                            </div>         
+                            {% if user.is_authenticated %}
+                            <div class="navbutton">
+                                <form action="{% url 'accounts:logout' %}" method="POST">
+                            {% csrf_token %}
+                                    <button type="submit" style="width: 61px; border: 1px solid #333333; background-color:white; color: #333333;">로그아웃</button>
+                                </form>
+                                    <button type="button" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;";><a href="{% url 'posts:profile_page'  user.id %}">마이페이지</a></button>
+                            </div> 
+                            {% else %}                                        
                             <div class="navbutton">
                                 <button type="button" style="width: 61px; border: 1px solid #333333; background-color:white; color: #333333;"><a href="{% url 'accounts:login' %}">로그인</a></button>
                                 <button type="button" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;";><a href="{% url 'accounts:sign_up' %}">회원가입</a></button>
                             </div>
-                        {% endif %}
-                        </div>
+                            {% endif %}
+                        </div>  
                     </div>
                 </div>
             </div>

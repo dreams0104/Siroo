@@ -144,13 +144,19 @@
 }
 
 .feed_card_body {
-    height:69px;
-    margin-bottom: 22px;
+    min-height: 68px;
+    margin-bottom: 16px;
     font-family: 'DM Sans', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
     color: #000000;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .feed_card_tag {
@@ -160,13 +166,17 @@
     justify-content: space-between;
 }
 
-.tags {
-    
+.tags {    
     display: flex;
     align-self:flex-start;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: wrap;
+    height: 53px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;    
 }
 
 .tag {    
@@ -175,16 +185,21 @@
     font-weight: normal;
     font-size: 12px;
     color: #FFFFFF;
+    max-width: 130px;
     height: 24px;
+    max-width: 120px;
     padding: 4px 8px 4px 8px;
     background: #50BB1D;
     border-radius: 15px;
     box-sizing: border-box;
     margin: 1px 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;    
 }
 
 .feed_card_created_at {
-    width: 46px;
+    width: 70px;
     box-sizing: border-box;
     height: 52px;
     font-family: 'DM Sans', sans-serif;

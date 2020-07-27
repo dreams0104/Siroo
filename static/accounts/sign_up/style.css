@@ -1,0 +1,112 @@
+.min_height {
+    min-height: 790px;
+    padding-top: 11px;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+}
+
+.login_wrap {
+    margin: 0 auto;
+    width: 332px;
+    margin-top: 17px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}    
+
+.login_logo {
+    display: flex;
+    justify-content: center;
+}
+
+.input_wrap {
+    margin: 0 auto;
+    margin-top: 25px;
+    display: flex;
+    flex-direction:column;
+    justify-content: flex-start;
+}
+
+.input_wrap .text {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+}
+.input_box {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+.input_box input{  
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #B3B3B3;
+    padding: 0 0 0 14px; 
+    border: none;
+    border-top: 1px solid #B3B3B3;
+    border-right: 1px solid #B3B3B3;
+    border-bottom: 1px solid #B3B3B3;
+    border-left: 1px solid #B3B3B3;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 300px;
+    height: 40px;
+}
+
+select {
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #503326;
+    padding: 0 0 0 14px; 
+    border: none;
+    border-top: 1px solid #B3B3B3;
+    border-right: 1px solid #B3B3B3;
+    border-bottom: 1px solid #B3B3B3;
+    border-left: 1px solid #B3B3B3;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 300px;
+    height: 40px;    
+}
+
+option {
+    color: #503326;
+}
+
+.button {
+
+    margin-top: 10px;
+}
+
+.login_submit {
+    display: flex;
+    justify-items: center;
+}
+
+.button .login_submit button {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    width: 300px;
+    height: 48px;
+    border-radius: 33px;
+    background-color: #F2F2F2;
+}
+.button .login_submit button:hover {
+    color: #6F4C3D;
+}
