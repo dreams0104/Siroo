@@ -15,8 +15,11 @@ def index(request):
     posts = Post.objects.all().order_by('-created_at')
     
     #전체 태그에서 가장 많이 쓰인 태그 불러오기    
-    tags = Tag.objects.all().annotate(num_posts=Count('taged_post')).order_by('-num_posts')        
-    hot_tags = list(tags)[0:9]
+    # taged_post가 없는 경우 태그 목록에 노출 되지 않도록.
+    tags=Tag.objects.exclude(taged_post__isnull=True).annotate(num_posts=Count('taged_post')).order_by('-num_posts')
+    tags=list(tags)
+
+    hot_tags = tags[0:9]
 
     context = {        
         'posts' : posts,
@@ -191,7 +194,7 @@ def comment_create(request, post_id):
     comment = Comment(post=post, user=user, body=body)
     comment.save()
 
-    return redirect('posts:detail', post_id=post.id)
+    return redirect('posts:tagforcomment', comment_id=comment.id)
 
 @login_required
 def comment_edit(request, comment_id):
@@ -225,7 +228,7 @@ def comment_update(request, comment_id):
     comment.save()
 
     #바로 detail페이지로 가지 않고, tag저장 후 가기 위해서 tagforpost로 이동
-    return redirect('posts:detail', post_id=post.id)    
+    return redirect('posts:tagforcomment', comment_id=comment.id)        
 
 @login_required
 def comment_delete(request, comment_id):
@@ -262,33 +265,85 @@ def taged_post_filter(request, tag_id):
     hot_tags = list(tags)[0:9]
     print(tags)
 
-    #created_at 간소화 시키기
-    for post in posts:
-        past = post.created_at
-        now = timezone.now()
-        sec = now - past
-        countd = int((sec).total_seconds()/3600)
-        countday = int((sec).total_seconds()/3600/24)
-        daycount = ""
-        #past와 now를 문자열로나눈 뒤, 날짜가 보이는 부분을 인덱싱함
-        #시간이 경과 되었어도 날짜가 바뀐지를 확인하기 위함.
-        a = str(past)[0:10]
-        b = str(now)[0:10]
-
-        if a == b:
-            daycount = "오늘 "
-        elif countd < 24 :
-            daycount = "하루 전"
-        else :
-            daycount = str(countday) + "일 전"  
-
+    
     context = {
         'posts' : posts,
-        'daycount' : daycount,
         'hot_tags' : hot_tags,
     }
     
     return render(request, 'posts/taged_post_filter.html', context)
+
+def tagforcomment(request, comment_id):
+
+    comment = Comment.objects.get(id=comment_id)
+    #본문을 str으로 바꾼 뒤, 띄어쓰기대로 Split해서 list로 저장함.    
+    body = str(comment.body).split()
+
+    taglist = list()
+    original_tags = list()
+
+    #태그가 있는지 확인하는 과정
+    if len(body) > 0 :
+
+        for i in body:
+            if i.count('#') > 0:
+                taglist.append(i)
+            else:
+                pass
+
+    #글 수정시 태그 중복 저장 방지(새로 작성된 글은 이 과정이 생략됨)
+        if comment.tagincomment.all():
+            for tag in list(comment.tagincomment.all()):
+                original_tags.append(tag)
+            if taglist == original_tags:
+                return redirect('posts:detail', post_id=post.id)
+            else:
+                tag = comment.tagincomment.all()
+                tag.delete()
+        else:
+            pass
+    #-------------------------------------------------------------             
+    #태그가 있을 시, #을 빼내고 문자열로 바꿔주어서 태그에 저장함.
+        for i in taglist: 
+            x = i.split('#')
+            del x[0]
+            tag_text = ''.join(x)
+
+            #태그를 스플릿해서 '#'이 빠진 스트링 형태로 tag에 저장함
+            tag=Tag(tag=tag_text)
+            comment.save()
+            "태그"
+
+            #태그가 기존에 있는 태그면, 쿼리셋에 추가만 해주고,
+            #태그가 기존에 없는 태그라면 태그를 저장한 뒤에 쿼리셋에 추가함.
+            try:
+                tag = Tag.objects.get(tag=tag_text)
+
+            except Tag.DoesNotExist:
+                tag.save()
+
+            comment.tagincomment.add(tag)
+
+    post=comment.post
+    return redirect('posts:detail', post_id=post.id)
+
+@login_required
+def like(request, post_id):
+    if request.method == 'POST':
+        try:
+            post = Post.objects.get(id=post_id)
+
+            if request.user in post.liked_users.all():
+                post.liked_users.remove(request.user)
+            else:
+                post.liked_users.add(request.user)
+
+            return redirect('posts:detail', post.id)
+
+        except Post.DoesNotExist:
+            pass
+
+    return redirect('posts:index')
 
 
 def filter_page(request):
