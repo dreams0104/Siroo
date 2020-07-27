@@ -7,38 +7,66 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="{% static 'reset.css' %}">
         <link rel="stylesheet" href="{% static 'style.css' %}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <title>Siroo</title>
-        {% block style %}
-        {% endblock %}
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <title>Siroo - Share Your Issues</title>
+{% block style %}
+{% endblock %}
     </head>
     <body>
         <header id="header">
-            <div class="container">
-                <div class="row">
-                    <div class="header-logo">
-                        <a href="{% url 'posts:index' %}">Siroo</a>
+            <div class="header">
+                <div class="container">   
+                    <div class="header_wrap">               
+                        <div class="header_logo">
+                            <div>
+                                <a href="{% url 'posts:index' %}"><img src="{% static 'images/index_logo.svg' %}"></a>
+                            </div>                        
+                        </div>
+                        <div class="menu_wrap">
+                            <div class="header_menu">
+                                <div><a href="{% url 'posts:index' %}">우리 동네 이야기</a></div>
+                                <div><a href="">우리 동네 마켓</a></div>
+                                <div><a href="">ABOUT</a></div>
+                                <div> ｜ </div>
+                            </div>         
+                            {% if user.is_authenticated %}
+                            <div class="navbutton">
+                                <form action="{% url 'accounts:logout' %}" method="POST">
+                            {% csrf_token %}
+                                    <button type="submit" style="width: 61px; border: 1px solid #333333; background-color:white; color: #333333;">로그아웃</button>
+                                </form>
+                                    <button type="button" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;";><a href="{% url 'posts:profile_page'  user.id %}">마이페이지</a></button>
+                            </div> 
+                            {% else %}                                        
+                            <div class="navbutton">
+                                <button type="button" style="width: 61px; border: 1px solid #333333; background-color:white; color: #333333;"><a href="{% url 'accounts:login' %}">로그인</a></button>
+                                <button type="button" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;";><a href="{% url 'accounts:sign_up' %}">회원가입</a></button>
+                            </div>
+                            {% endif %}
+                        </div>  
                     </div>
-                    <div class="header-menu">
-                    <a href="">Community</a>
-                    <a href="">Market</a>
-                    </div> 
                 </div>
             </div>
         </header>
-        <main>
-        {% block content %}
+{% block content %} 
 
-            
-        {% endblock %}
-        </main>
+{% endblock %}
         <footer id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer">
-                <a href="">About siroo</a>
+            <div class="footer">
+                <div class="container">
+                    <div class="contents">
+                        <div class="content"><a href="">서비스 소개</a></div>
+                        <div class="content"><a href="">개인정보 취급방침</a></div>
+                        <div class="content"><a href="">광고 문의</a></div>
+                    </div>
+                    <div class="contents">
+                        <div class="content"><a href="">고객 센터</a></div>
+                        <div class="content"><a href="">Blog</a></div>
+                        <div class="content"><a href="">Instagram</a></div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
     </body>
 </html>

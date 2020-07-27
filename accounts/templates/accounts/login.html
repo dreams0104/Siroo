@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'accounts/login/style.css' %}">
+{% endblock %}
+{% block content %}
+<div class="min_height">
+<div class="alert alert-danger" role="alert">
+    {{ error }}
+</div>
+<div class="container">
+    <div class="login_wrap">
+        <div class="login_logo">
+            <img src="{% static '/images/login_logo.svg' %}" style="width:332px;">
+        </div>
+        <div class="input_wrap">
+            <div class="text">
+                이메일로 로그인
+            </div>
+            <form method="POST" action="{% url 'accounts:login' %}">
+            {% csrf_token %}
+            <div class="input_box">
+                <input type="email" name="email" name="email" placeholder="이메일">
+                <input type="password" name="password" name="password" placeholder="비밀번호">
+            </div>
+            <div class="button">
+                <div class="login_submit">
+                    <button type ="submit">로그인</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--
+<div class="container">
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endif %}
+    
+    <form method="POST" action="{% url 'accounts:login' %}">
+        {% csrf_token %}
+        <h1>Login</h1>
+        
+            <label for="username">이메일</label>
+            <input type="email" id="username" name="username" placeholder="아 이 디 ">
+        
+            <label for="password">패스워드</label>
+            <input type="password" id="password" name="password" placeholder="비밀번호">
+        
+        <button type ="submit">로 그 인</button>
+    </form>
+</div>
+-->
+{% endblock %}
